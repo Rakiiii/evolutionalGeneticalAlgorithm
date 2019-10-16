@@ -1,7 +1,5 @@
 package Item
 
-import Item.AbstractItem
-
 class BasicItem : AbstractItem()
 {
     private var price : Int = 0

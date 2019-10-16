@@ -13,7 +13,7 @@ class DoubleDotCrossover : AbstractCrossover()
 
         val secondDot = Random.nextInt( pair.first.Gene().getCode().size/2, pair.first.Gene().getCode().size - 1)
 
-        val subCode = BooleanArray(pair.first.Gene().getCode().size , { _ -> false } )
+        val subCode = BooleanArray(pair.first.Gene().getCode().size , { false } )
 
         for(i in 0 until firstDot)
         {

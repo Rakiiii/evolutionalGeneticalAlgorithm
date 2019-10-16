@@ -1,7 +1,5 @@
 package Crossover
 
-import Builders.GeneBuilding
-import Builders.IndividualBuilding
 import Individual.AbstractIndividual
 import Initializers.IndividualInitializer
 

@@ -1,6 +1,5 @@
 package Individual
 
-import Builders.GeneBuilding
 import Fitness.AbstractFitness
 import Gene.AbstractGene
 

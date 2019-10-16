@@ -1,7 +1,5 @@
 package Gene
 
-import Gene.AbstractGene
-
 class BasicGene : AbstractGene()
 {
     private var _code : BooleanArray = BooleanArray(0)

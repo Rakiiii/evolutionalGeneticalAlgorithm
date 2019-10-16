@@ -1,12 +1,9 @@
 package PopulationGenerator
 
 import Fitness.AbstractFitness
-import Gene.BasicGene
 import Individual.AbstractIndividual
-import Individual.BasicIndividual
 import Item.AbstractItem
 import Population.AbstractPopulation
-import Population.BasicPopulation
 import kotlin.random.Random
 
 class HungryPopulationGenetator : AbstractPopulationGenerator()
@@ -49,7 +46,7 @@ class HungryPopulationGenetator : AbstractPopulationGenerator()
         {
             val rndItem = Random.nextInt(0 , items.size)
             var total = items[rndItem].Weight()
-            val subCode = BooleanArray( items.size , { _ -> false})
+            val subCode = BooleanArray( items.size , { false})
             var counter = 1
             subCode[rndItem] = true
 

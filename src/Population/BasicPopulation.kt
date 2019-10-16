@@ -1,8 +1,6 @@
 package Population
 
 import Individual.AbstractIndividual
-import Individual.BasicIndividual
-import kotlin.Exception
 
 class BasicPopulation : AbstractPopulation()
 {
@@ -66,5 +64,11 @@ class BasicPopulation : AbstractPopulation()
         {
             throw Exception("Population is not initialized")
         }
+    }
+
+    override fun getBestIndividual(): AbstractIndividual {
+        var bestInd = _individuals.first()
+        _individuals.forEach { ind -> if(ind.Fitness() > bestInd.Fitness()) bestInd = ind }
+        return bestInd
     }
 }

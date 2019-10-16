@@ -9,7 +9,6 @@ import Parser.AbstractParser
 import Population.AbstractPopulation
 import PopulationGenerator.AbstractPopulationGenerator
 import Selector.AbstractSelector
-import kotlin.random.Random
 
 class EvolutioanlGeneticalAlgorithm
 {
@@ -156,28 +155,38 @@ class EvolutioanlGeneticalAlgorithm
 
         population = populationGenerator.GeneratePopolation(populationSize)
 
-        //debug
-        population.Print()
-        //debug
-
         var parents : MutableList< Pair<AbstractIndividual , AbstractIndividual> >
 
         var childrens : MutableList<AbstractIndividual> = mutableListOf()
 
         for(i in 0 until amountOfItterations)
         {
+            println("population number " + i.toString() + " :")
+            population.Print()
+            print("Best individual:")
+            population.getBestIndividual().Print()
+            println()
+            println()
+
             childrens.clear()
 
             parents = parentSelector.SelectParentsPair(population)
+            //println("parents selected")
 
             for(j in parents)
             {
                 childrens.add(crossover.Cross(j))
             }
 
+            //println("crossed")
+
             childrens = mutatationManager.Mutate(childrens)
 
+            //println("childrens mutated")
+
             population = selector.SelectNewPopulation(population , childrens)
+
+            //println("population selected")
 
             population = modificator.ModifyPopulation(population , items , res.second)
         }

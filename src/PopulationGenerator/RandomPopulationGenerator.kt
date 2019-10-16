@@ -42,7 +42,7 @@ class RandomPopulationGenerator : AbstractPopulationGenerator()
 
         for(i in 0 until size)
         {
-            val subCode = BooleanArray( items.size , { _ -> false})
+            val subCode = BooleanArray( items.size , { false})
             val chosed : HashSet<Int> = hashSetOf()
             var rndItem = Random.nextInt(0 , items.size)
             var total = 0

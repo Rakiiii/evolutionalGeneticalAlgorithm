@@ -1,10 +1,6 @@
 package Crossover
 
-import Builders.GeneBuilding
-import Builders.IndividualBuilding
-import Gene.BasicGene
 import Individual.AbstractIndividual
-import Individual.BasicIndividual
 import kotlin.random.Random
 
 class SingleDotCrossover : AbstractCrossover()
@@ -16,7 +12,7 @@ class SingleDotCrossover : AbstractCrossover()
 
         val dot = Random.nextInt( 0 , pair.first.Gene().getCode().size - 1)
 
-        val subCode = BooleanArray(pair.first.Gene().getCode().size , { _ -> false } )
+        val subCode = BooleanArray(pair.first.Gene().getCode().size , { false } )
 
         for( i in 0 until dot)
         {

@@ -2,7 +2,6 @@ package ParentSelector
 
 import Individual.AbstractIndividual
 import Population.AbstractPopulation
-import Utils.WrapperBooleanArray
 import kotlin.random.Random
 
 class RandomParentSelector : AbstractParentSelector()

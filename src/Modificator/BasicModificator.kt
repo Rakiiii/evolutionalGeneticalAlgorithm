@@ -3,7 +3,6 @@ package Modificator
 import Individual.AbstractIndividual
 import Item.AbstractItem
 import Population.AbstractPopulation
-import Population.BasicPopulation
 
 
 class BasicModificator : AbstractModificator()

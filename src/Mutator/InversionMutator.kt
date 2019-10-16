@@ -8,7 +8,7 @@ class InversionMutator : AbstractMutator()
     {
         if(!this.isInitialized())throw Exception("SaltationMutator is not initialized")
 
-        val newCode = BooleanArray(individual.Gene().getCode().size , { _ -> false})
+        val newCode = BooleanArray(individual.Gene().getCode().size , { false})
 
         for(i in 0 until newCode.size)
         {

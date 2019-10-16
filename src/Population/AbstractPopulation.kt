@@ -11,4 +11,5 @@ abstract class AbstractPopulation
     abstract fun Copy():AbstractPopulation
     abstract fun getCopyOfIndividuals() : MutableList<AbstractIndividual>
     abstract fun Print()
+    abstract fun getBestIndividual():AbstractIndividual
 }

@@ -2,7 +2,6 @@ package Individual
 
 import Fitness.AbstractFitness
 import Gene.AbstractGene
-import Gene.BasicGene
 
 class BasicIndividual : AbstractIndividual()
 {

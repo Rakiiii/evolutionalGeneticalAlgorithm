@@ -1,8 +1,6 @@
 package Mutator
 
-import Gene.BasicGene
 import Individual.AbstractIndividual
-import Individual.BasicIndividual
 import kotlin.random.Random
 
 class SaltationMutator : AbstractMutator()
