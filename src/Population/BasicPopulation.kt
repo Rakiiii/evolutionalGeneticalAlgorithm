@@ -71,4 +71,20 @@ class BasicPopulation : AbstractPopulation()
         _individuals.forEach { ind -> if(ind.Fitness() > bestInd.Fitness()) bestInd = ind }
         return bestInd
     }
+
+    override fun toString(): String {
+        if(::_individuals.isInitialized)
+        {
+            var str : String = ""
+            for(i in _individuals)
+            {
+                str += i.toString()+"\n"
+            }
+            return str
+        }
+        else
+        {
+            throw Exception("Population is not initialized")
+        }
+    }
 }

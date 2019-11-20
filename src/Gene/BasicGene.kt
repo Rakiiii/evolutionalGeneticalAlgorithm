@@ -16,4 +16,12 @@ class BasicGene : AbstractGene()
         for(i in _code)print( if(i) 1 else 0 )
     }
 
+    override fun toString(): String {
+        var str = ""
+        for (i in this._code){
+            if(i)str +=1
+            else str +=0
+        }
+        return str
+    }
 }

@@ -37,14 +37,20 @@ class HungryPopulationGenetator : AbstractPopulationGenerator()
     override fun GeneratePopolation(size: Int): AbstractPopulation
     {
         if(!::items.isInitialized && !::fitness.isInitialized && !this.isInitialized())throw Exception("HungryPopulationGenerator is not initialized")
+        if( size > items.size)throw Exception("Incorrect population size for HungryPopulationGenerator")
         val result = populationBuilder.Build()
         val subResult : MutableList<AbstractIndividual> = mutableListOf()
+        val choosed : HashSet<Int> = hashSetOf()
 
         items.sortedWith(compareBy { it.Value() })
 
         for(i in 0 until size)
         {
-            val rndItem = Random.nextInt(0 , items.size)
+            var rndItem = Random.nextInt(0 , items.size)
+            while(!choosed.add(rndItem))
+            {
+                rndItem = Random.nextInt(0 , items.size)
+            }
             var total = items[rndItem].Weight()
             val subCode = BooleanArray( items.size , { false})
             var counter = 1

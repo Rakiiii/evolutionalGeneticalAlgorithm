@@ -16,8 +16,8 @@ class BTournamentSelector : AbstractSelector()
         val b = children.size
 
         val indidsFromNewPopulation : MutableList<AbstractIndividual> = mutableListOf()
-        val reproductionList : MutableList<AbstractIndividual> = oldPop.getCopyOfIndividuals()
-        reproductionList += children
+        val reproductionList : MutableList<AbstractIndividual> = children
+        reproductionList += oldPop.getCopyOfIndividuals()
 
         for( i in 0 until oldPop.Size())
         {

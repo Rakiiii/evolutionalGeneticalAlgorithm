@@ -29,8 +29,8 @@ class ProportionalSelector : AbstractSelector()
 
         val subResult : MutableList<AbstractIndividual> = mutableListOf()
 
-        val reproductionList : MutableList<AbstractIndividual> = oldPop.getCopyOfIndividuals()
-        reproductionList += children
+        val reproductionList : MutableList<AbstractIndividual> = children
+        reproductionList += oldPop.getCopyOfIndividuals()
 
         var itter = 0
         while(subResult.size < oldPop.Size())
@@ -43,7 +43,7 @@ class ProportionalSelector : AbstractSelector()
             itter ++
             if(itter >= reproductionList.size)itter = 0
         }
-        
+
 
         val result = populationBuilder.Build()
         result.Init(subResult)

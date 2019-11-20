@@ -14,10 +14,15 @@ import PopulationGenerator.HungryPopulationGeneratorBulder
 import PopulationGenerator.RandomPopulationGeneratorBuilder
 import Selector.BTournamentSelectorBuilder
 import Selector.ProportionalSelectorBuilder
+import Utils.printlnToFile
+import java.io.File
 
 fun main(argc : Array<String>)
 {
+    printlnToFile("start\n")
 
+
+    /*
     val director = EvolutionalGeneticalAlgorithmBuildingDirector(
         fitnessBuilder = BasicFitnessBuilder(),
         selectorBuilder = ProportionalSelectorBuilder(),
@@ -31,6 +36,8 @@ fun main(argc : Array<String>)
         populationGeneratorBuilder = HungryPopulationGeneratorBulder(),
         mutationManagerBuilder = BasicMutationManagerBuilder()
     )
+
+
 
     if(! (argc[0] == "-debug"))
     {
@@ -70,11 +77,13 @@ fun main(argc : Array<String>)
         when ( readLine())
         {
             "1" -> director.selectorBuilder = BTournamentSelectorBuilder()
-            "2" -> director.selectorBuilder = BTournamentSelectorBuilder()
+            "2" -> director.selectorBuilder = ProportionalSelectorBuilder()
             else -> throw Exception("Wrong input")
         }
 
-    }
+    }*/
+
+    val director = directorGen(argc[0])
 
     val algorithm = director.Build()
 
@@ -82,7 +91,14 @@ fun main(argc : Array<String>)
     algorithm.SetPopulationSize(argc[argc.size - 2].toInt())
     val result = algorithm.Run(argc[argc.size - 1].toInt())
 
-    println("Result:")
+    printlnToFile("Result:")
     result.Print()
     println()
+
+    printlnToFile(result.toString())
+
+    val wr = File("res").bufferedWriter()
+    wr.write(argc[0]+" "+result.Gene().toString()+" "+result.Fitness().toString())
+    wr.close()
 }
+

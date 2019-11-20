@@ -9,9 +9,12 @@ import Parser.AbstractParser
 import Population.AbstractPopulation
 import PopulationGenerator.AbstractPopulationGenerator
 import Selector.AbstractSelector
+import Utils.printlnToFile
 
 class EvolutioanlGeneticalAlgorithm
 {
+    private val maxIt = 3
+
     private var items : MutableList<AbstractItem> = mutableListOf()
 
     private lateinit var population: AbstractPopulation
@@ -140,6 +143,9 @@ class EvolutioanlGeneticalAlgorithm
     {
         if(!this.IsInitialized())throw Exception("EvolutionalGeneticalAlgorithm is not Initialized")
 
+        var prevBest : AbstractIndividual? = null
+        var counter = 0
+
         val res = parser.ParseItemsFromFile(file)
 
         items = res.first
@@ -161,12 +167,19 @@ class EvolutioanlGeneticalAlgorithm
 
         for(i in 0 until amountOfItterations)
         {
+            printlnToFile("population number " + i.toString() + " :\n"+population.toString())
+
             println("population number " + i.toString() + " :")
             population.Print()
-            print("Best individual:")
+
+            printlnToFile("Best individual:\n"+population.getBestIndividual().toString())
+
+
+
+            println("Best individual:")
             population.getBestIndividual().Print()
-            println()
-            println()
+            //println()
+            //println()
 
             childrens.clear()
 
@@ -178,6 +191,11 @@ class EvolutioanlGeneticalAlgorithm
                 childrens.add(crossover.Cross(j))
             }
 
+            /*
+            println("debug start")
+            for(j in childrens)j.Print()
+            println("debug ends")
+            */
             //println("crossed")
 
             childrens = mutatationManager.Mutate(childrens)
@@ -189,13 +207,18 @@ class EvolutioanlGeneticalAlgorithm
             //println("population selected")
 
             population = modificator.ModifyPopulation(population , items , res.second)
+
+            val bestIndividual : AbstractIndividual = population.getBestIndividual()
+
+            prevBest?.let {
+                if (it.Fitness() == bestIndividual.Fitness())counter ++
+                else counter = 0
+                if( counter >= maxIt)return bestIndividual
+            }
+            prevBest = bestIndividual
         }
 
-        var bestIndividual : AbstractIndividual = population.Individual(0)
-        for(i in 1 until population.Size())
-        {
-            if(population.Individual(i).Fitness() > bestIndividual.Fitness())bestIndividual = population.Individual(i)
-        }
+        val bestIndividual : AbstractIndividual =population.getBestIndividual()
 
         return bestIndividual
     }

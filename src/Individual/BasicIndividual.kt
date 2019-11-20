@@ -48,6 +48,18 @@ class BasicIndividual : AbstractIndividual()
             _gene.Print()
             print(" | ")
             print(this.Fitness().toString())
+            print(" | ")
+            print(this.TotalWeight())
+        }
+        else throw Exception("BasicIndividual is not Initialized")
+    }
+
+    override fun toString(): String {
+        if(::_gene.isInitialized && ::_fitness.isInitialized)
+        {
+            var str = "Code:"
+            str += _gene.toString()+" | "+this.Fitness().toString()+" | "+this.TotalWeight().toString()
+            return str
         }
         else throw Exception("BasicIndividual is not Initialized")
     }
